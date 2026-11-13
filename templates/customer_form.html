@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Add customer · BankSphere{% endblock %}{% block heading %}Add customer{% endblock %}
+{% block content %}
+<div class="form-card"><h3>New customer record</h3><p>Fields marked * are required.</p>
+<form method="post" class="form-grid">
+<label>First name *<input name="first_name" required maxlength="50"></label><label>Last name *<input name="last_name" required maxlength="50"></label>
+<label>Email<input type="email" name="email" maxlength="100"></label><label>Phone<input name="phone" maxlength="15"></label>
+<label>Date of birth<input type="date" name="date_of_birth"></label><label>Gender<input name="gender" maxlength="10" placeholder="e.g. Male"></label>
+<label>City<input name="city" maxlength="50"></label><label>Address<input name="address" maxlength="200"></label>
+<div class="form-actions"><a class="button secondary" href="{{ url_for('customers') }}">Cancel</a><button class="button" type="submit">Save customer</button></div>
+</form></div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Accounts · BankSphere{% endblock %}{% block heading %}Accounts{% endblock %}
+{% block content %}<div class="section-head"><div><h3>Bank accounts</h3><p>Account ownership, branch and current stored balance</p></div></div>
+<div class="table-wrap"><table><thead><tr><th>ACCOUNT</th><th>CUSTOMER</th><th>BRANCH</th><th>TYPE</th><th>BALANCE</th><th>STATUS</th><th>OPENED</th></tr></thead><tbody>
+{% for a in accounts %}<tr><td class="person">{{ a.account_number }}</td><td>{{ a.customer_name }}</td><td>{{ a.branch_name }}</td><td>{{ a.account_type }}</td><td class="amount">₹{{ "{:,.2f}".format(a.balance) }}</td><td><span class="pill {{ a.account_status|lower }}">{{ a.account_status }}</span></td><td>{{ a.opening_date or '—' }}</td></tr>
+{% else %}<tr><td colspan="7" class="empty">No accounts found.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

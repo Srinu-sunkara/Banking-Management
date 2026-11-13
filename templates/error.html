@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Application error · BankSphere{% endblock %}{% block heading %}Connection issue{% endblock %}
+{% block content %}<div class="form-card"><h3>The page could not be loaded</h3><p>Check that MySQL is running, the database exists, and your connection settings are correct.</p><pre class="error-text">{{ message }}</pre><a class="button" href="{{ url_for('dashboard') }}">Try again</a></div>{% endblock %}

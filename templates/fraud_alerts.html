@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Fraud alerts · BankSphere{% endblock %}{% block heading %}Fraud alerts{% endblock %}
+{% block content %}<div class="section-head"><div><h3>Suspicious activity review</h3><p>Alerts recorded in your fraud_alerts table</p></div></div>
+<div class="table-wrap"><table><thead><tr><th>ALERT</th><th>CUSTOMER</th><th>ACCOUNT</th><th>TYPE</th><th>DESCRIPTION</th><th>DATE</th><th>STATUS</th></tr></thead><tbody>
+{% for a in alerts %}<tr><td class="muted">#{{ a.alert_id }}</td><td class="person">{{ a.customer_name }}</td><td>{{ a.account_number }}</td><td>{{ a.alert_type }}</td><td>{{ a.alert_description or '—' }}</td><td>{{ a.alert_date.strftime('%d %b %Y, %H:%M') if a.alert_date else '—' }}</td><td><span class="pill {{ a.alert_status|lower }}">{{ a.alert_status }}</span></td></tr>
+{% else %}<tr><td colspan="7" class="empty">No fraud alerts found.</td></tr>{% endfor %}</tbody></table></div>
+<div class="note">Alerts are rule-based demo records. They do not establish that fraud has occurred.</div>{% endblock %}

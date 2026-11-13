@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BankSphere{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">B</span><span>BankSphere</span></a>
+    <div class="nav-label">WORKSPACE</div>
+    <nav>
+      <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' else '' }}">▦ <span>Dashboard</span></a>
+      <a href="{{ url_for('customers') }}" class="{{ 'active' if request.endpoint in ['customers','add_customer'] else '' }}">♙ <span>Customers</span></a>
+      <a href="{{ url_for('accounts') }}" class="{{ 'active' if request.endpoint == 'accounts' else '' }}">▣ <span>Accounts</span></a>
+      <a href="{{ url_for('transactions') }}" class="{{ 'active' if request.endpoint == 'transactions' else '' }}">↔ <span>Transactions</span></a>
+      <a href="{{ url_for('fraud_alerts') }}" class="{{ 'active' if request.endpoint == 'fraud_alerts' else '' }}">⚑ <span>Fraud alerts</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="avatar">AD</div><div><strong>Admin Demo</strong><small>Local preview</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="eyebrow">BANKING OPERATIONS</span><h1>{% block heading %}Overview{% endblock %}</h1></div><div class="top-right"><span class="status-dot"></span> Database workspace</div></header>
+    <section class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+      <footer>BankSphere · SQL portfolio demonstration · Use fictional data only</footer>
+    </section>
+  </main>
+</div>
+</body>
+</html>
